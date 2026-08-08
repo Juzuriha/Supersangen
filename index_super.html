@@ -151,6 +151,31 @@
   .mem-info h3{font-size:17px;font-weight:700;margin-bottom:4px;}
   .mem-info .kana{font-family:"JetBrains Mono",monospace;font-size:10.5px;color:var(--dim);letter-spacing:.08em;}
 
+  #record{background:var(--bg-2);}
+  .data-grid{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:16px;
+  }
+  @media (max-width:680px){.data-grid{grid-template-columns:repeat(2,1fr);}}
+  .data-tile{
+    background:var(--bg);border:1px solid var(--line);
+    padding:24px 20px;
+    display:flex;flex-direction:column;gap:8px;
+    transition:border-color .25s;
+  }
+  .data-tile:hover{border-color:var(--orange);}
+  .data-tile .d-label{
+    font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.1em;color:var(--dim);
+  }
+  .data-tile .d-value{
+    font-weight:900;font-size:34px;letter-spacing:.01em;color:var(--ivory);line-height:1;
+  }
+  .data-tile .d-value .unit{
+    font-size:14px;font-weight:500;color:var(--dim);margin-left:4px;
+  }
+  .data-tile .d-note{
+    font-family:"JetBrains Mono",monospace;font-size:10px;color:var(--orange-dim);letter-spacing:.03em;
+  }
+
   #log{background:var(--bg);}
   .state{
     font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--dim);
@@ -204,6 +229,8 @@
 <div class="topbar">
   <div class="brand">超三元<span class="dot">.</span></div>
   <nav>
+    <a href="oshidata_super.html">OSHI DATA</a>
+    <a href="#record">RECORD</a>
     <a href="#log">LOG</a>
     <a href="#about">ABOUT</a>
   </nav>
@@ -222,11 +249,40 @@
   <p class="scroll">SCROLL</p>
 </header>
 
+<section id="record">
+  <div class="inner">
+    <div class="sec-head">
+      <h2>RECORD</h2>
+    </div>
+    <div class="data-grid">
+      <div class="data-tile">
+        <span class="d-label">推し歴</span>
+        <span class="d-value">3<span class="unit">年</span></span>
+        <span class="d-note">2023.06.15〜</span>
+      </div>
+      <div class="data-tile">
+        <span class="d-label">参戦した現場</span>
+        <span class="d-value">--<span class="unit">回</span></span>
+        <span class="d-note">ライブ・お話会 合計</span>
+      </div>
+      <div class="data-tile">
+        <span class="d-label">直近の現場</span>
+        <span class="d-value">6.20</span>
+        <span class="d-note">河口湖ステラシアター</span>
+      </div>
+      <div class="data-tile">
+        <span class="d-label">撮った写真</span>
+        <span class="d-value">--<span class="unit">枚</span></span>
+        <span class="d-note">累計・α7V</span>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="log">
   <div class="inner">
     <div class="sec-head">
       <h2>LOG</h2>
-      <span class="tag">BLOG</span>
     </div>
 
     <div class="log-list" id="log-list">
