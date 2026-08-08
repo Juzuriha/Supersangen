@@ -92,19 +92,21 @@
   }
   .hero h1 .accent{color:var(--orange);}
 
+  .hero .tagline{
+    position:relative;z-index:2;
+    max-width:480px;margin:32px auto 0;
+    font-size:clamp(15px,2.4vw,18px);
+    line-height:1.9;font-weight:500;color:#d8d6d0;
+    letter-spacing:.02em;
+  }
+
   .hero .sub{
     position:relative;z-index:2;
-    margin-top:26px;
+    margin-top:22px;
     font-family:"JetBrains Mono",monospace;
-    font-size:12px;letter-spacing:.25em;color:var(--dim);
+    font-size:11.5px;letter-spacing:.2em;color:var(--dim);
   }
   .hero .sub b{color:var(--ivory);font-weight:500;}
-
-  .hero p.lead{
-    position:relative;z-index:2;
-    max-width:460px;margin:34px auto 0;
-    font-size:14px;line-height:2;color:#b7b6b3;
-  }
 
   .scroll{
     position:relative;z-index:2;margin-top:60px;
@@ -150,6 +152,11 @@
   .mem-info .kana{font-family:"JetBrains Mono",monospace;font-size:10.5px;color:var(--dim);letter-spacing:.08em;}
 
   #log{background:var(--bg);}
+  .state{
+    font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--dim);
+    letter-spacing:.05em;padding:30px 4px;
+  }
+  .state.error{color:var(--orange);}
   .log-row{
     display:grid;grid-template-columns:100px 1fr auto;gap:20px;align-items:center;
     padding:26px 4px;border-bottom:1px solid var(--line);
@@ -197,7 +204,6 @@
 <div class="topbar">
   <div class="brand">超三元<span class="dot">.</span></div>
   <nav>
-    <a href="#member">MEMBER</a>
     <a href="#log">LOG</a>
     <a href="#about">ABOUT</a>
   </nav>
@@ -210,58 +216,11 @@
 
     <div class="rec"><span class="blip"></span>RECORDING SINCE 2026</div>
     <h1>超<span class="accent">三</span>元</h1>
-    <p class="sub">CHŌ SANGEN — <b>柳堀花怜 / 今井優希 / 早﨑すずき</b></p>
-    <p class="lead">ファインダー越しに見た、3人だけの記録。<br>データでも批評でもなく、ただ好きだという記録を残す場所。</p>
+    <p class="tagline">ひとりのオタクが、自由気ままに思うことを書くサイト</p>
+    <p class="sub">Super SANGEN</p>
   </div>
   <p class="scroll">SCROLL</p>
 </header>
-
-<section id="member">
-  <div class="inner">
-    <div class="sec-head">
-      <h2>MEMBER</h2>
-      <span class="tag">FOCUS ON THREE</span>
-    </div>
-    <div class="mem-grid">
-      <div class="mem-card">
-        <div class="mem-ph">
-          <span class="corner tl"></span><span class="corner tr"></span>
-          <span class="corner bl"></span><span class="corner br"></span>
-          PHOTO
-        </div>
-        <div class="mem-info">
-          <div class="role">MAIN OSHI</div>
-          <h3>柳堀花怜</h3>
-          <div class="kana">YANAGIHORI KAREN</div>
-        </div>
-      </div>
-      <div class="mem-card">
-        <div class="mem-ph">
-          <span class="corner tl"></span><span class="corner tr"></span>
-          <span class="corner bl"></span><span class="corner br"></span>
-          PHOTO
-        </div>
-        <div class="mem-info">
-          <div class="role">MEMBER</div>
-          <h3>今井優希</h3>
-          <div class="kana">IMAI YUKI</div>
-        </div>
-      </div>
-      <div class="mem-card">
-        <div class="mem-ph">
-          <span class="corner tl"></span><span class="corner tr"></span>
-          <span class="corner bl"></span><span class="corner br"></span>
-          PHOTO
-        </div>
-        <div class="mem-info">
-          <div class="role">MEMBER</div>
-          <h3>早﨑すずき</h3>
-          <div class="kana">HAYASAKI SUZUKI</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <section id="log">
   <div class="inner">
@@ -270,33 +229,8 @@
       <span class="tag">BLOG</span>
     </div>
 
-    <div class="log-list">
-      <a class="log-row" href="post-template.html">
-        <span class="date">2026.06.20<span class="exif">α7V / SEL100400MC</span></span>
-        <span class="body">
-          <h3>河口湖の風、あの一瞬について</h3>
-          <p>結成3周年の野外ライブ。撮影部シートから見た、彼女が夕陽を浴びた一瞬の記録。</p>
-        </span>
-        <span class="tagmark">柳堀花怜</span>
-      </a>
-
-      <a class="log-row" href="post-template.html">
-        <span class="date">2026.05.06<span class="exif">α7V / 35-150mm F2-2.8</span></span>
-        <span class="body">
-          <h3>うみかぜ公園、波に混じった声</h3>
-          <p>EARLY SUMMER FESTA、海辺の特設ステージでのライブバンド編成。生音の記録。</p>
-        </span>
-        <span class="tagmark">今井優希</span>
-      </a>
-
-      <a class="log-row" href="post-template.html">
-        <span class="date">2026.03.29<span class="exif">α7V / 35-150mm F2-2.8</span></span>
-        <span class="body">
-          <h3>何も足さない、という強さについて</h3>
-          <p>全国ツアー初日、KANDA SQUARE HALL。彼女の在り方についての記録。</p>
-        </span>
-        <span class="tagmark">早﨑すずき</span>
-      </a>
+    <div class="log-list" id="log-list">
+      <p class="state" id="log-state">読み込み中...</p>
     </div>
   </div>
 </section>
@@ -316,6 +250,67 @@
   <div class="fmark">超三元</div>
   © CHŌ SANGEN
 </footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<script>
+  /*
+   * ここにGoogleスプレッドシートを「ウェブに公開 → CSV」した時に発行される
+   * URLを貼るだけでLOGが自動更新される。
+   * スプレッドシートの列: id, date, tag, title, excerpt, image_url, body
+   */
+  const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRe97dHcH8DKDl2s_J_tSqUuGyw-3u3GZ_h0FsEcq5KePPZU-7WgofTw8rlAnblD_NB7n0d6YEdbWfi/pub?gid=0&single=true&output=csv";
+
+  const listEl = document.getElementById('log-list');
+  const stateEl = document.getElementById('log-state');
+
+  function escapeHtml(str){
+    return (str||"").replace(/[&<>"']/g, s => ({
+      '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+    }[s]));
+  }
+
+  function renderRows(rows){
+    const valid = rows.filter(r => r.title && r.title.trim());
+    if(!valid.length){
+      stateEl.textContent = "まだ記事がありません。";
+      return;
+    }
+    // 新しい日付が上に来るよう並び替え（id降順フォールバック）
+    valid.sort((a,b) => {
+      const da = new Date((a.date||"").replaceAll(".", "-"));
+      const db = new Date((b.date||"").replaceAll(".", "-"));
+      if(!isNaN(da) && !isNaN(db) && da - db !== 0) return db - da;
+      return (parseInt(b.id)||0) - (parseInt(a.id)||0);
+    });
+
+    listEl.innerHTML = valid.map(r => `
+      <a class="log-row" href="post.html?id=${encodeURIComponent(r.id)}">
+        <span class="date">${escapeHtml(r.date)}</span>
+        <span class="body">
+          <h3>${escapeHtml(r.title)}</h3>
+          <p>${escapeHtml(r.excerpt)}</p>
+        </span>
+        <span class="tagmark">${escapeHtml(r.tag)}</span>
+      </a>
+    `).join('');
+  }
+
+  if(SHEET_CSV_URL === "YOUR_PUBLISHED_CSV_URL_HERE"){
+    stateEl.textContent = "スプレッドシートのCSV URLが未設定です（index.html内のSHEET_CSV_URLを設定してください）。";
+    stateEl.classList.add('error');
+  } else {
+    Papa.parse(SHEET_CSV_URL, {
+      download:true,
+      header:true,
+      skipEmptyLines:true,
+      complete: (res) => renderRows(res.data),
+      error: () => {
+        stateEl.textContent = "記事の読み込みに失敗しました。CSVの公開設定を確認してください。";
+        stateEl.classList.add('error');
+      }
+    });
+  }
+</script>
 
 </body>
 </html>
