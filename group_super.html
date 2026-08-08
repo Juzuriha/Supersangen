@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GROUP | 超三元</title>
+<meta name="description" content="超三元 — 「僕が見たかった青空」の基本情報。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b0b0c;
+    --bg-2:#141416;
+    --line:#232326;
+    --ivory:#EDEBE6;
+    --dim:#8a8a8f;
+    --orange:#FF5A1F;
+    --orange-dim:#7a3016;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    background:var(--bg);color:var(--ivory);
+    font-family:"Zen Kaku Gothic New",sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none;}
+
+  .topbar{
+    position:sticky;top:0;z-index:50;
+    display:flex;justify-content:space-between;align-items:center;
+    padding:20px 28px;
+    background:rgba(11,11,12,.85);backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .brand{font-weight:900;font-size:18px;letter-spacing:.14em;}
+  .brand .dot{color:var(--orange);}
+  .topbar a.back{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.08em;color:var(--dim);}
+  .topbar a.back:hover{color:var(--orange);}
+
+  .head{padding:70px 24px 50px;text-align:center;}
+  .head .eyebrow{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.35em;color:var(--orange);margin-bottom:16px;}
+  .head h1{font-size:clamp(30px,6vw,46px);font-weight:900;letter-spacing:.04em;}
+  .head .kana{font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--dim);letter-spacing:.15em;margin-top:12px;}
+  .head p{margin-top:18px;font-size:13px;color:#c7c5bf;line-height:2;max-width:480px;margin-left:auto;margin-right:auto;}
+
+  .inner{max-width:640px;margin:0 auto;padding:0 24px 100px;}
+
+  .fact-grid{border-top:1px solid var(--line);}
+  .fact-row{
+    display:grid;grid-template-columns:140px 1fr;gap:20px;
+    padding:20px 0;border-bottom:1px solid var(--line);
+  }
+  @media (max-width:520px){.fact-row{grid-template-columns:100px 1fr;gap:12px;}}
+  .fact-label{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.1em;color:var(--orange);padding-top:2px;}
+  .fact-value{font-size:14px;line-height:1.8;color:var(--ivory);}
+  .fact-value .sub{display:block;font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--dim);margin-top:4px;letter-spacing:.03em;}
+
+  .note-box{
+    margin-top:40px;padding:22px;border:1px solid var(--line);background:var(--bg-2);
+  }
+  .note-box h4{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.15em;color:var(--orange);margin-bottom:12px;}
+  .note-box p{font-size:13px;line-height:2;color:#c7c5bf;}
+
+  footer{padding:44px 24px 60px;text-align:center;font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.1em;color:var(--dim);}
+  footer .fmark{font-weight:900;font-size:14px;color:var(--ivory);margin-bottom:10px;letter-spacing:.1em;font-family:"Zen Kaku Gothic New",sans-serif;}
+
+  :focus-visible{outline:2px solid var(--orange);outline-offset:3px;}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a class="brand" href="index_super.html">超三元<span class="dot">.</span></a>
+  <a class="back" href="index_super.html">← TOPへ</a>
+</div>
+
+<div class="head">
+  <p class="eyebrow">GROUP</p>
+  <h1>僕が見たかった青空</h1>
+  <div class="kana">BOKU GA MITAKATTA AOZORA</div>
+  <p>秋元康総合プロデュースによる、乃木坂46公式ライバルグループ。<br>坂道シリーズには属さず、独立したポジションで活動している。</p>
+</div>
+
+<div class="inner">
+  <div class="fact-grid">
+    <div class="fact-row">
+      <span class="fact-label">結成</span>
+      <span class="fact-value">2023年6月15日</span>
+    </div>
+    <div class="fact-row">
+      <span class="fact-label">デビュー</span>
+      <span class="fact-value">2023年8月30日<span class="sub">1stシングル「青空について考える」</span></span>
+    </div>
+    <div class="fact-row">
+      <span class="fact-label">オーディション</span>
+      <span class="fact-value">応募総数 35,678人<span class="sub">2023年2月〜、乃木坂46公式ライバルオーディション</span></span>
+    </div>
+    <div class="fact-row">
+      <span class="fact-label">結成時人数</span>
+      <span class="fact-value">23人<span class="sub">年齢13〜22歳、出身地は北海道〜沖縄まで全国</span></span>
+    </div>
+    <div class="fact-row">
+      <span class="fact-label">所属事務所</span>
+      <span class="fact-value">Ligareaz Management<span class="sub">avex関連会社、2022年秋設立</span></span>
+    </div>
+    <div class="fact-row">
+      <span class="fact-label">総合プロデュース</span>
+      <span class="fact-value">秋元康</span>
+    </div>
+    <div class="fact-row">
+      <span class="fact-label">特色</span>
+      <span class="fact-value">メンバーごとのパーソナルカラー制<span class="sub">2ndシングル以降は選抜制（青空組／雲組）を導入</span></span>
+    </div>
+    <div class="fact-row">
+      <span class="fact-label">受賞歴</span>
+      <span class="fact-value">第65回 日本レコード大賞 新人賞<span class="sub">2023年12月</span></span>
+    </div>
+    <div class="fact-row">
+      <span class="fact-label">略称</span>
+      <span class="fact-value">僕青（ぼくあお）</span>
+    </div>
+  </div>
+
+  <div class="note-box">
+    <h4>NOTE</h4>
+    <p>
+      このページは超三元が把握してる範囲の基本情報。<br>
+      最新のメンバー構成・活動状況は<a href="https://bokuao.com" target="_blank" rel="noopener" style="color:var(--orange);">公式サイト（bokuao.com）</a>を確認してください。
+    </p>
+  </div>
+</div>
+
+<footer>
+  <div class="fmark">超三元</div>
+  © CHŌ SANGEN
+</footer>
+
+</body>
+</html>
