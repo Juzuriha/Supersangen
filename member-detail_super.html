@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OSHI DATA | 超三元</title>
+<meta name="description" content="超三元 — 推しメンバーの魅力・掲載・出演まとめ。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b0b0c;
+    --bg-2:#141416;
+    --line:#232326;
+    --ivory:#EDEBE6;
+    --dim:#8a8a8f;
+    --orange:#FF5A1F;
+    --orange-dim:#7a3016;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);color:var(--ivory);
+    font-family:"Zen Kaku Gothic New",sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+
+  .topbar{
+    position:sticky;top:0;z-index:50;
+    display:flex;justify-content:space-between;align-items:center;
+    padding:20px 28px;
+    background:rgba(11,11,12,.85);backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .brand{font-weight:900;font-size:18px;letter-spacing:.14em;text-decoration:none;color:var(--ivory);}
+  .brand .dot{color:var(--orange);}
+  .topbar a.back{
+    font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.08em;
+    color:var(--dim);text-decoration:none;
+  }
+  .topbar a.back:hover{color:var(--orange);}
+
+  main{max-width:720px;margin:0 auto;padding:70px 24px 120px;}
+
+  .state{
+    font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--dim);
+    letter-spacing:.05em;padding:60px 4px;text-align:center;
+  }
+  .state.error{color:var(--orange);}
+
+  .p-head{display:none;margin-bottom:54px;}
+  .p-head .role{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.15em;color:var(--orange);}
+  .p-head h1{font-size:clamp(30px,6vw,44px);font-weight:900;margin-top:10px;}
+  .p-head .kana{font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--dim);letter-spacing:.08em;margin-top:8px;}
+
+  .cat-block{display:none;margin-bottom:54px;}
+  .cat-block h2{
+    font-size:16px;font-weight:900;letter-spacing:.06em;
+    padding-bottom:12px;margin-bottom:20px;border-bottom:1px solid var(--line);
+    display:flex;align-items:center;gap:10px;
+  }
+  .cat-block h2::before{content:"";width:8px;height:8px;background:var(--orange);}
+
+  .item{padding:16px 0;border-bottom:1px solid var(--line);}
+  .item:last-child{border-bottom:none;}
+  .item .i-title{font-size:14.5px;font-weight:700;line-height:1.6;}
+  .item .i-detail{font-size:13px;color:#c7c5bf;line-height:1.9;margin-top:6px;}
+  .item .i-meta{
+    margin-top:8px;display:flex;gap:14px;flex-wrap:wrap;
+    font-family:"JetBrains Mono",monospace;font-size:10.5px;color:var(--dim);letter-spacing:.03em;
+  }
+  .item .i-meta a{color:var(--orange-dim);}
+  .item .i-meta a:hover{color:var(--orange);}
+
+  footer{padding:44px 24px 60px;text-align:center;font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.1em;color:var(--dim);}
+  footer .fmark{font-weight:900;font-size:14px;color:var(--ivory);margin-bottom:10px;letter-spacing:.1em;font-family:"Zen Kaku Gothic New",sans-serif;}
+
+  :focus-visible{outline:2px solid var(--orange);outline-offset:3px;}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a class="brand" href="index_super.html">超三元<span class="dot">.</span></a>
+  <a class="back" href="oshidata_super.html">← OSHI DATAへ</a>
+</div>
+
+<main>
+  <p class="state" id="state">読み込み中...</p>
+
+  <div class="p-head" id="p-head">
+    <span class="role" id="p-role"></span>
+    <h1 id="p-name"></h1>
+    <span class="kana" id="p-kana"></span>
+  </div>
+
+  <div id="cats"></div>
+</main>
+
+<footer>
+  <div class="fmark">超三元</div>
+  © CHŌ SANGEN
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<script>
+  /*
+   * OSHI DATA用のGoogleスプレッドシート(別タブ)をCSV公開して、そのURLをここに設定する。
+   * 列: member, name, kana, role, category, title, detail, date, url
+   *  - member: karen / yuki / suzuki のようなスラッグ（oshidata_super.htmlのリンクと合わせる）
+   *  - category: 魅力 / 掲載 / 出演 など。自由に増やしてOK、出てきた順にセクション化される
+   */
+  const SHEET_CSV_URL = "YOUR_OSHIDATA_CSV_URL_HERE";
+
+  const MEMBER_INFO = {
+    yuki:   { name:"今井優希",  kana:"IMAI YUKI",         role:"MEMBER" },
+    suzuki: { name:"早﨑すずき", kana:"HAYASAKI SUZUKI",   role:"MEMBER" },
+    karen:  { name:"柳堀花怜",  kana:"YANAGIHORI KAREN",  role:"MAIN OSHI" },
+  };
+
+  const params = new URLSearchParams(location.search);
+  const m = params.get('m');
+
+  const stateEl = document.getElementById('state');
+  const headEl = document.getElementById('p-head');
+  const catsEl = document.getElementById('cats');
+
+  function escapeHtml(str){
+    return (str||"").replace(/[&<>"']/g, s => ({
+      '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+    }[s]));
+  }
+
+  function renderMember(rows){
+    const info = MEMBER_INFO[m];
+    if(!info){
+      stateEl.textContent = "メンバーが見つかりませんでした。";
+      stateEl.classList.add('error');
+      return;
+    }
+    document.title = `${info.name} | OSHI DATA | 超三元`;
+    document.getElementById('p-role').textContent = info.role;
+    document.getElementById('p-name').textContent = info.name;
+    document.getElementById('p-kana').textContent = info.kana;
+
+    const mine = rows.filter(r => (r.member||"").trim() === m);
+
+    if(!mine.length){
+      catsEl.innerHTML = `<p class="state">まだデータがありません。スプレッドシートに ${m} の行を追加してください。</p>`;
+    } else {
+      const order = [];
+      const grouped = {};
+      mine.forEach(r => {
+        const cat = (r.category||"その他").trim();
+        if(!grouped[cat]){grouped[cat]=[];order.push(cat);}
+        grouped[cat].push(r);
+      });
+
+      catsEl.innerHTML = order.map(cat => `
+        <div class="cat-block" style="display:block">
+          <h2>${escapeHtml(cat)}</h2>
+          ${grouped[cat].map(r => `
+            <div class="item">
+              <div class="i-title">${escapeHtml(r.title)}</div>
+              ${r.detail ? `<div class="i-detail">${escapeHtml(r.detail)}</div>` : ""}
+              ${(r.date || r.url) ? `
+                <div class="i-meta">
+                  ${r.date ? `<span>${escapeHtml(r.date)}</span>` : ""}
+                  ${r.url ? `<a href="${escapeHtml(r.url)}" target="_blank" rel="noopener">リンク →</a>` : ""}
+                </div>` : ""}
+            </div>
+          `).join('')}
+        </div>
+      `).join('');
+    }
+
+    stateEl.style.display = 'none';
+    headEl.style.display = 'block';
+  }
+
+  if(!m || !MEMBER_INFO[m]){
+    stateEl.textContent = "メンバーが指定されていません。";
+    stateEl.classList.add('error');
+  } else if(SHEET_CSV_URL === "YOUR_OSHIDATA_CSV_URL_HERE"){
+    // データ未接続でもプロフィール(名前部分)だけは表示する
+    const info = MEMBER_INFO[m];
+    document.title = `${info.name} | OSHI DATA | 超三元`;
+    document.getElementById('p-role').textContent = info.role;
+    document.getElementById('p-name').textContent = info.name;
+    document.getElementById('p-kana').textContent = info.kana;
+    headEl.style.display = 'block';
+    stateEl.textContent = "OSHI DATA用のCSV URLが未設定です。";
+    stateEl.classList.add('error');
+  } else {
+    Papa.parse(SHEET_CSV_URL, {
+      download:true,
+      header:true,
+      skipEmptyLines:true,
+      complete: (res) => renderMember(res.data),
+      error: () => {
+        stateEl.textContent = "データの読み込みに失敗しました。";
+        stateEl.classList.add('error');
+      }
+    });
+  }
+</script>
+
+</body>
+</html>

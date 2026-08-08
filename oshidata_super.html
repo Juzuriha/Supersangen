@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OSHI DATA | 超三元</title>
+<meta name="description" content="超三元 — 柳堀花怜・今井優希・早﨑すずき、それぞれの魅力・掲載・出演をまとめたページ。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b0b0c;
+    --bg-2:#141416;
+    --line:#232326;
+    --ivory:#EDEBE6;
+    --dim:#8a8a8f;
+    --orange:#FF5A1F;
+    --orange-dim:#7a3016;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);color:var(--ivory);
+    font-family:"Zen Kaku Gothic New",sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none;}
+
+  .topbar{
+    position:sticky;top:0;z-index:50;
+    display:flex;justify-content:space-between;align-items:center;
+    padding:20px 28px;
+    background:rgba(11,11,12,.85);backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .brand{font-weight:900;font-size:18px;letter-spacing:.14em;}
+  .brand .dot{color:var(--orange);}
+  .topbar a.back{
+    font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.08em;
+    color:var(--dim);
+  }
+  .topbar a.back:hover{color:var(--orange);}
+
+  .head{
+    padding:80px 24px 60px;text-align:center;
+  }
+  .head .eyebrow{
+    font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.35em;color:var(--orange);
+    margin-bottom:18px;
+  }
+  .head h1{font-size:clamp(32px,6vw,48px);font-weight:900;letter-spacing:.04em;}
+  .head p{margin-top:16px;font-size:13.5px;color:var(--dim);line-height:1.9;max-width:440px;margin-left:auto;margin-right:auto;}
+
+  .mem-wrap{max-width:1000px;margin:0 auto;padding:0 24px 100px;}
+  .mem-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  @media (max-width:780px){.mem-grid{grid-template-columns:1fr;max-width:420px;margin:0 auto;}}
+
+  .mem-card{
+    background:var(--bg-2);border:1px solid var(--line);
+    display:flex;flex-direction:column;
+    transition:border-color .25s, transform .25s;
+  }
+  .mem-card:hover{border-color:var(--orange);transform:translateY(-4px);}
+
+  /* monogram viewfinder block (画像の代わり) */
+  .mono-box{
+    position:relative;aspect-ratio:4/5;
+    background:
+      radial-gradient(circle at 30% 20%, rgba(255,90,31,.08), transparent 55%),
+      linear-gradient(160deg,#1a1a1c,#0b0b0c);
+    display:flex;align-items:center;justify-content:center;
+    overflow:hidden;
+  }
+  .mono-box::before{
+    content:"";position:absolute;inset:0;
+    background-image:radial-gradient(rgba(255,255,255,.035) 1px, transparent 0);
+    background-size:10px 10px;
+  }
+  .mono-box .ic{
+    position:absolute;
+    color:rgba(237,235,230,.55);
+    transition:color .25s;
+    z-index:2;
+  }
+  .mem-card:hover .mono-box .ic{color:var(--orange);}
+
+  .ic-main{width:46%;height:46%;top:50%;left:50%;transform:translate(-50%,-50%);}
+
+  .ic-spark-a{width:15%;height:15%;top:20%;right:18%;}
+  .ic-spark-b{width:10%;height:10%;bottom:24%;right:28%;}
+
+  .ic-fl-a{width:32%;height:32%;top:30%;left:26%;}
+  .ic-fl-b{width:28%;height:28%;top:38%;left:50%;}
+  .ic-fl-c{width:24%;height:24%;top:56%;left:38%;}
+  .mono-box .scanline{
+    position:absolute;left:0;right:0;height:1px;background:rgba(255,90,31,.5);
+    top:0;animation:scan 3.4s linear infinite;box-shadow:0 0 8px rgba(255,90,31,.6);
+  }
+  @keyframes scan{0%{top:0%;}100%{top:100%;}}
+  .fc{position:absolute;width:24px;height:24px;border-color:var(--orange);opacity:.55;z-index:2;}
+  .fc.tl{top:14px;left:14px;border-top:2px solid;border-left:2px solid;}
+  .fc.br{bottom:14px;right:14px;border-bottom:2px solid;border-right:2px solid;}
+
+  .mem-body{padding:22px 22px 24px;display:flex;flex-direction:column;gap:12px;flex:1;}
+  .mem-body .role{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.15em;color:var(--orange);}
+  .mem-body h2{font-size:19px;font-weight:700;}
+  .mem-body .kana{font-family:"JetBrains Mono",monospace;font-size:10.5px;color:var(--dim);letter-spacing:.06em;}
+  .mem-body .blurb{
+    font-size:12.5px;line-height:1.9;color:#c7c5bf;
+    margin-top:4px;flex:1;
+  }
+  .mem-body .detail-btn{
+    margin-top:14px;
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    font-family:"JetBrains Mono",monospace;font-size:11px;font-weight:700;letter-spacing:.08em;
+    color:var(--bg);background:var(--orange);
+    padding:12px 0;
+    transition:opacity .2s;
+  }
+  .mem-body .detail-btn:hover{opacity:.85;}
+
+  footer{padding:44px 24px 60px;text-align:center;font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.1em;color:var(--dim);}
+  footer .fmark{font-weight:900;font-size:14px;color:var(--ivory);margin-bottom:10px;letter-spacing:.1em;font-family:"Zen Kaku Gothic New",sans-serif;}
+
+  :focus-visible{outline:2px solid var(--orange);outline-offset:3px;}
+
+  @media (prefers-reduced-motion: reduce){
+    .scanline{animation:none;display:none;}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a class="brand" href="index_super.html">超三元<span class="dot">.</span></a>
+  <a class="back" href="index_super.html">← TOPへ</a>
+</div>
+
+<div class="head">
+  <p class="eyebrow">OSHI DATA</p>
+  <h1>推しデータ</h1>
+  <p>見せびらかすためじゃなく、知ってもらうために。<br>3人それぞれの魅力・掲載・出演を、ふんわりだけどしっかりまとめる場所。</p>
+</div>
+
+<div class="mem-wrap">
+  <div class="mem-grid">
+
+    <a class="mem-card" href="member-detail_super.html?m=yuki">
+      <div class="mono-box">
+        <span class="fc tl"></span><span class="fc br"></span>
+        <span class="scanline"></span>
+        <i data-lucide="star" class="ic ic-main"></i>
+        <i data-lucide="sparkle" class="ic ic-spark-a"></i>
+        <i data-lucide="sparkle" class="ic ic-spark-b"></i>
+      </div>
+      <div class="mem-body">
+        <span class="role">MEMBER</span>
+        <h2>今井優希</h2>
+        <span class="kana">IMAI YUKI</span>
+        <p class="blurb">ここに一言プロフィールを書く。性格や現場での印象、ふとした魅力ポイントなど、短めでOK。</p>
+        <span class="detail-btn">詳細を見る →</span>
+      </div>
+    </a>
+
+    <a class="mem-card" href="member-detail_super.html?m=suzuki">
+      <div class="mono-box">
+        <span class="fc tl"></span><span class="fc br"></span>
+        <span class="scanline"></span>
+        <i data-lucide="bell" class="ic ic-main"></i>
+      </div>
+      <div class="mem-body">
+        <span class="role">MEMBER</span>
+        <h2>早﨑すずき</h2>
+        <span class="kana">HAYASAKI SUZUKI</span>
+        <p class="blurb">ここに一言プロフィールを書く。性格や現場での印象、ふとした魅力ポイントなど、短めでOK。</p>
+        <span class="detail-btn">詳細を見る →</span>
+      </div>
+    </a>
+
+    <a class="mem-card" href="member-detail_super.html?m=karen">
+      <div class="mono-box">
+        <span class="fc tl"></span><span class="fc br"></span>
+        <span class="scanline"></span>
+        <i data-lucide="flower-2" class="ic ic-fl-a"></i>
+        <i data-lucide="flower-2" class="ic ic-fl-b"></i>
+        <i data-lucide="flower-2" class="ic ic-fl-c"></i>
+      </div>
+      <div class="mem-body">
+        <span class="role">MAIN OSHI</span>
+        <h2>柳堀花怜</h2>
+        <span class="kana">YANAGIHORI KAREN</span>
+        <p class="blurb">ここに一言プロフィールを書く。性格や現場での印象、ふとした魅力ポイントなど、短めでOK。</p>
+        <span class="detail-btn">詳細を見る →</span>
+      </div>
+    </a>
+
+  </div>
+</div>
+
+<footer>
+  <div class="fmark">超三元</div>
+  © CHŌ SANGEN
+</footer>
+
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+  lucide.createIcons();
+</script>
+
+</body>
+</html>
