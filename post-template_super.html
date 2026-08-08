@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>河口湖の風、あの一瞬について | 超三元</title>
-<meta name="description" content="超三元 — 柳堀花怜についての記録。">
+<title>読み込み中... | 超三元</title>
+<meta name="description" content="超三元 — ひとりのオタクが自由気ままに思うことを書くサイト。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
@@ -44,7 +44,13 @@
 
   article{max-width:660px;margin:0 auto;padding:70px 24px 120px;}
 
-  .post-head{margin-bottom:52px;}
+  .state{
+    font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--dim);
+    letter-spacing:.05em;padding:60px 4px;text-align:center;
+  }
+  .state.error{color:var(--orange);}
+
+  .post-head{margin-bottom:52px;display:none;}
   .post-head .tagmark{
     display:inline-flex;align-items:center;gap:8px;
     font-family:"JetBrains Mono",monospace;
@@ -60,39 +66,24 @@
     margin-top:20px;
     font-family:"JetBrains Mono",monospace;
     font-size:11.5px;color:var(--dim);letter-spacing:.05em;
-    display:flex;gap:18px;flex-wrap:wrap;
   }
-  .post-head .meta span{color:var(--orange-dim);}
 
   .figure{margin:44px 0;position:relative;}
+  .figure img{width:100%;display:block;border:1px solid var(--line);}
   .figure .ph{
     width:100%;aspect-ratio:3/2;
     background:linear-gradient(160deg,#1c1c1e,#0b0b0c);
     display:flex;align-items:center;justify-content:center;
     color:#4a4a4d;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.1em;
     border:1px solid var(--line);
-    position:relative;
-  }
-  .fcorner{position:absolute;width:22px;height:22px;border-color:var(--orange);opacity:.6;}
-  .fcorner.tl{top:10px;left:10px;border-top:2px solid;border-left:2px solid;}
-  .fcorner.br{bottom:10px;right:10px;border-bottom:2px solid;border-right:2px solid;}
-  .figure figcaption{
-    margin-top:10px;font-family:"JetBrains Mono",monospace;
-    font-size:11px;color:var(--dim);letter-spacing:.03em;
   }
 
-  .prose{font-size:15.5px;line-height:2.3;color:var(--ivory);}
-  .prose p{margin-bottom:1.7em;}
-
-  .divider{
-    display:flex;align-items:center;gap:14px;margin:60px 0;color:var(--orange-dim);
-  }
-  .divider span{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.2em;}
-  .divider::after{content:"";flex:1;height:1px;background:var(--line);}
+  .prose{font-size:15.5px;line-height:2.3;color:var(--ivory);display:none;}
+  .prose p{margin-bottom:1.7em;white-space:pre-wrap;}
 
   .post-foot{
     margin-top:70px;padding-top:30px;border-top:1px solid var(--line);
-    display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;
+    display:none;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;
   }
   .post-foot a{
     font-family:"JetBrains Mono",monospace;
@@ -115,45 +106,21 @@
 </div>
 
 <article>
-  <div class="post-head">
-    <span class="tagmark">柳堀花怜</span>
-    <h1>河口湖の風、あの一瞬について</h1>
-    <div class="meta">
-      <span>2026.06.20</span>
-      <span>結成3周年記念「青空野外」ライブ</span>
-      <span>α7V / SEL100400MC</span>
-    </div>
+  <p class="state" id="state">読み込み中...</p>
+
+  <div class="post-head" id="post-head">
+    <span class="tagmark" id="p-tag"></span>
+    <h1 id="p-title"></h1>
+    <div class="meta" id="p-date"></div>
   </div>
 
-  <figure class="figure">
-    <div class="ph">
-      <span class="fcorner tl"></span><span class="fcorner br"></span>
-      PHOTO — ここに撮影写真を差し込む
-    </div>
-    <figcaption>河口湖ステラシアター／撮影部シートより</figcaption>
-  </figure>
+  <div id="p-figure"></div>
 
-  <div class="prose">
-    <p>
-      ここに本文を書く。見出しはJetBrains Mono、本文はZen Kaku Gothic Newで統一してあるから、
-      写真主体の回でもテキスト主体の回でも整合性が崩れない設計にした。
-    </p>
-    <p>
-      段落は好きなだけ増やしてOK。行間は少し広めに取っていて、スマホで読んでも詰まって見えない。
-    </p>
-  </div>
+  <div class="prose" id="p-body"></div>
 
-  <div class="divider"><span>NEXT</span></div>
-
-  <div class="prose">
-    <p>
-      写真を複数枚挟みたい場合は <code>.figure</code> ブロックをコピーして増やす。文章の合間に挟んでも、最後にまとめて並べても良い。
-    </p>
-  </div>
-
-  <div class="post-foot">
+  <div class="post-foot" id="post-foot">
     <a href="index.html#log">← LOG一覧</a>
-    <a href="index.html#member">MEMBERを見る →</a>
+    <a href="index.html">TOPへ →</a>
   </div>
 </article>
 
@@ -161,6 +128,73 @@
   <div class="fmark">超三元</div>
   © CHŌ SANGEN
 </footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<script>
+  /* index.html と同じCSV URLをここにも設定する */
+  const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRe97dHcH8DKDl2s_J_tSqUuGyw-3u3GZ_h0FsEcq5KePPZU-7WgofTw8rlAnblD_NB7n0d6YEdbWfi/pub?gid=0&single=true&output=csv";
+
+  const params = new URLSearchParams(location.search);
+  const id = params.get('id');
+
+  const stateEl = document.getElementById('state');
+  const headEl = document.getElementById('post-head');
+  const footEl = document.getElementById('post-foot');
+  const bodyEl = document.getElementById('p-body');
+  const figureEl = document.getElementById('p-figure');
+
+  function escapeHtml(str){
+    return (str||"").replace(/[&<>"']/g, s => ({
+      '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+    }[s]));
+  }
+
+  function renderPost(row){
+    if(!row){
+      stateEl.textContent = "記事が見つかりませんでした。";
+      stateEl.classList.add('error');
+      return;
+    }
+    document.title = `${row.title} | 超三元`;
+    document.getElementById('p-tag').textContent = row.tag || "";
+    document.getElementById('p-title').textContent = row.title || "";
+    document.getElementById('p-date').textContent = row.date || "";
+
+    if(row.image_url && row.image_url.trim()){
+      figureEl.innerHTML = `<figure class="figure"><img src="${escapeHtml(row.image_url)}" alt="${escapeHtml(row.title)}"></figure>`;
+    }
+
+    const paragraphs = (row.body || "").split(/\n+/).filter(p => p.trim());
+    bodyEl.innerHTML = paragraphs.map(p => `<p>${escapeHtml(p)}</p>`).join('');
+
+    stateEl.style.display = 'none';
+    headEl.style.display = 'block';
+    bodyEl.style.display = 'block';
+    footEl.style.display = 'flex';
+  }
+
+  if(!id){
+    stateEl.textContent = "記事IDが指定されていません。";
+    stateEl.classList.add('error');
+  } else if(SHEET_CSV_URL === "YOUR_PUBLISHED_CSV_URL_HERE"){
+    stateEl.textContent = "スプレッドシートのCSV URLが未設定です。";
+    stateEl.classList.add('error');
+  } else {
+    Papa.parse(SHEET_CSV_URL, {
+      download:true,
+      header:true,
+      skipEmptyLines:true,
+      complete: (res) => {
+        const row = res.data.find(r => String(r.id) === String(id));
+        renderPost(row);
+      },
+      error: () => {
+        stateEl.textContent = "記事の読み込みに失敗しました。";
+        stateEl.classList.add('error');
+      }
+    });
+  }
+</script>
 
 </body>
 </html>
