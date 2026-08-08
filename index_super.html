@@ -39,11 +39,12 @@
   }
   .brand{font-weight:900;font-size:18px;letter-spacing:.14em;}
   .brand .dot{color:var(--orange);}
-  .topbar nav{display:flex;gap:26px;}
+  .topbar nav{display:flex;gap:22px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;}
+  .topbar nav::-webkit-scrollbar{display:none;}
   .topbar nav a{
     font-family:"JetBrains Mono",monospace;
     font-size:11px;letter-spacing:.1em;color:var(--dim);
-    transition:color .2s;
+    transition:color .2s;white-space:nowrap;flex-shrink:0;
   }
   .topbar nav a:hover{color:var(--orange);}
 
@@ -125,56 +126,12 @@
     margin-bottom:44px;padding-bottom:16px;border-bottom:1px solid var(--line);
   }
   .sec-head h2{font-size:22px;font-weight:900;letter-spacing:.04em;}
+  .sec-head h2 .sub-jp{
+    font-family:"JetBrains Mono",monospace;
+    font-size:11px;font-weight:500;letter-spacing:.15em;color:var(--dim);
+    margin-left:12px;
+  }
   .sec-head .tag{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.2em;color:var(--orange);}
-
-  #member{background:var(--bg-2);}
-  .mem-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
-  @media (max-width:680px){.mem-grid{grid-template-columns:1fr;}}
-  .mem-card{
-    position:relative;
-    background:var(--bg);border:1px solid var(--line);
-    padding:0;overflow:hidden;
-    transition:border-color .25s, transform .25s;
-  }
-  .mem-card:hover{border-color:var(--orange);transform:translateY(-4px);}
-  .mem-ph{
-    aspect-ratio:4/5;
-    background:linear-gradient(160deg,#1c1c1e,#0b0b0c);
-    position:relative;
-    display:flex;align-items:center;justify-content:center;
-    color:#4a4a4d;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.1em;
-  }
-  .mem-ph .corner{width:20px;height:20px;opacity:.5;}
-  .mem-card:hover .mem-ph .corner{opacity:1;}
-  .mem-info{padding:18px 18px 22px;}
-  .mem-info .role{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.15em;color:var(--orange);margin-bottom:8px;}
-  .mem-info h3{font-size:17px;font-weight:700;margin-bottom:4px;}
-  .mem-info .kana{font-family:"JetBrains Mono",monospace;font-size:10.5px;color:var(--dim);letter-spacing:.08em;}
-
-  #record{background:var(--bg-2);}
-  .data-grid{
-    display:grid;grid-template-columns:repeat(4,1fr);gap:16px;
-  }
-  @media (max-width:680px){.data-grid{grid-template-columns:repeat(2,1fr);}}
-  .data-tile{
-    background:var(--bg);border:1px solid var(--line);
-    padding:24px 20px;
-    display:flex;flex-direction:column;gap:8px;
-    transition:border-color .25s;
-  }
-  .data-tile:hover{border-color:var(--orange);}
-  .data-tile .d-label{
-    font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.1em;color:var(--dim);
-  }
-  .data-tile .d-value{
-    font-weight:900;font-size:34px;letter-spacing:.01em;color:var(--ivory);line-height:1;
-  }
-  .data-tile .d-value .unit{
-    font-size:14px;font-weight:500;color:var(--dim);margin-left:4px;
-  }
-  .data-tile .d-note{
-    font-family:"JetBrains Mono",monospace;font-size:10px;color:var(--orange-dim);letter-spacing:.03em;
-  }
 
   #log{background:var(--bg);}
   .state{
@@ -220,7 +177,7 @@
   @media (prefers-reduced-motion: reduce){
     html{scroll-behavior:auto;}
     .blip,.scroll::after{animation:none;}
-    .mem-card,.log-row{transition:none;}
+    .log-row{transition:none;}
   }
 </style>
 </head>
@@ -229,9 +186,11 @@
 <div class="topbar">
   <div class="brand">超三元<span class="dot">.</span></div>
   <nav>
-    <a href="#record">RECORD</a>
     <a href="#log">LOG</a>
+    <a href="group_super.html">GROUP</a>
+    <a href="sangen_super.html">SUPER SANGEN</a>
     <a href="#about">ABOUT</a>
+    <a href="writer_super.html">WRITER</a>
   </nav>
 </div>
 
@@ -243,40 +202,10 @@
     <div class="rec"><span class="blip"></span>RECORDING SINCE 2026</div>
     <h1>超<span class="accent">三</span>元</h1>
     <p class="tagline">ひとりのオタクが、自由気ままに思うことを書くサイト</p>
-    <p class="sub">Super SANGEN</p>
+    <p class="sub">SUPER SANGEN GROUP</p>
   </div>
   <p class="scroll">SCROLL</p>
 </header>
-
-<section id="record">
-  <div class="inner">
-    <div class="sec-head">
-      <h2>RECORD</h2>
-    </div>
-    <div class="data-grid">
-      <div class="data-tile">
-        <span class="d-label">推し歴</span>
-        <span class="d-value">3<span class="unit">年</span></span>
-        <span class="d-note">2023.06.15〜</span>
-      </div>
-      <div class="data-tile">
-        <span class="d-label">参戦した現場</span>
-        <span class="d-value">--<span class="unit">回</span></span>
-        <span class="d-note">ライブ・お話会 合計</span>
-      </div>
-      <div class="data-tile">
-        <span class="d-label">直近の現場</span>
-        <span class="d-value">6.20</span>
-        <span class="d-note">河口湖ステラシアター</span>
-      </div>
-      <div class="data-tile">
-        <span class="d-label">撮った写真</span>
-        <span class="d-value">--<span class="unit">枚</span></span>
-        <span class="d-note">累計・α7V</span>
-      </div>
-    </div>
-  </div>
-</section>
 
 <section id="log">
   <div class="inner">
@@ -293,9 +222,12 @@
 <section id="about">
   <div class="inner">
     <p>
-      <b>超三元</b>は、「僕が見たかった青空」の柳堀花怜・今井優希・早﨑すずき、<br>
-      三人だけを記録するための個人ブログです。<br>
-      写真はすべて撮影部として現場で撮ったもの。ここに置くのは、ただ好きだという記録だけ。
+      <b>超三元</b>とは、今井優希・早﨑すずき・柳堀花怜の三人を合わせた<b>「個人的総称」</b>。<br>
+      3人を推す私が、「観て」「聴いて」感じたことを思うままに書くサイトです。
+    </p>
+    <p style="margin-top:22px;">
+      写真はすべて撮影部として現場で撮ったもの。<br>
+      ここに置くのは、ただ好きだという記録だけ。
     </p>
     <div class="credit">SHOT ON SONY α7V</div>
   </div>
